@@ -4,7 +4,7 @@ import './Join.less';
 
 const Join = () => {
 
-    const [flag, setFlag] = useState('a');
+    const [flag, setFlag] = useState('d');
 
 
     function Select(e: React.MouseEvent<HTMLDivElement>): any {
@@ -37,9 +37,8 @@ const Join = () => {
                     <div className={flag == 'd' ? 'selected' : "title"} id='d' onClick={(event) => Select(event)} >审阅</div>
                     <div className={flag == 'e' ? 'selected' : "title"} id='e' onClick={(event) => Select(event)} >作业发布</div>
                 </div>
-                {/* 组件  */}
-                <J_progress />
-
+                <div className="box2">
+                </div>
             </div>
         </div>
     )
