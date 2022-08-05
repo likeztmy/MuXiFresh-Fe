@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import J_progress from '../J_progress';
 import './Join.less';
+import A_audit from "../A_audit";
+import ManageLists from "../A_ManageLists";
 
 const Join = () => {
 
@@ -12,6 +14,7 @@ const Join = () => {
         const div: HTMLDivElement = e.currentTarget;
         setClickedDiv(div.id);
         // alert(window.innerWidth)
+        // alert(getComputedStyle(div,null).getPropertyValue('font-size'))
     }
 
     function setClickedDiv(id: string): void {
@@ -38,6 +41,8 @@ const Join = () => {
                     <div className={flag == 'e' ? 'selected' : "title"} id='e' onClick={(event) => Select(event)} >作业发布</div>
                 </div>
                 <div className="box2">
+                    <A_audit></A_audit>
+                    <ManageLists></ManageLists>
                 </div>
             </div>
         </div>
