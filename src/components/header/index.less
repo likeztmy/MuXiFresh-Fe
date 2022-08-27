@@ -1,65 +1,107 @@
-.header {
-    box-sizing: border-box;
+.header{
     background-color: #FEAB21;
     width: 100vw;
-    height: 1.04rem;
+    height: 8vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     overflow-x: hidden;
-    .muxi {
-        width: 2.21rem;
-        height: 0.72rem;
+    .muxi{
+        width: 140px;
+        height: 6vh;
         background: #152025;
-        border-radius: 0.36rem;
+        border-radius: 30px 30px 30px 30px;
         opacity: 1;
         display: flex;
         flex-direction: row;
-        margin-left: 0.2rem;
-        justify-content: center;
-        align-items: center;
-
-        img {
+        margin: auto 0;
+        margin-left: 20px;
+        img{
             display: flex;
-            width: 0.56rem;
-            height: 0.56rem;
+            width: 35px;
+            height: 35px;
+            margin:auto 0;
+            margin-left: 2vh;
         }
-
-        .text {
+        .text{
             display: flex;
-            width: auto;
-            height: auto;
-            align-items: center;
-            font-size: 0.36rem;
+            width: 83px;
+            height: 6vh;
+            line-height: 6vh;
+            font-size: 25px;
             font-family: Microsoft YaHei-Bold, Microsoft YaHei;
             font-weight: bold;
             color: #FFFFFF;
-            margin-left: 0.2rem;
+            margin-left: 20px;
         }
     }
-
-    .avatar {
+    .avatar{
         display: flex;
-        background-color: #707070;
-        width: 0.72rem;
-        height: 0.72rem;
-        border-radius: 0.36rem;
-        margin-right: 1.04rem;
+        width: 6.5vh;
+        height: 6.5vh;
+        border-radius: 40px;
+        margin: auto 0;
+        margin-right: 20px;
+        position: relative;
+        background-color: #fff;
         cursor: pointer;
+        img {
+            width: 6.5vh;
+            height: 6.5vh;
+            border-radius: 40px;
+        }
+
+        .guide{
+
+            .home{
+                display: flex;
+                width: 12vh;
+                height: 5vh;
+                font-size: medium;
+                font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+                font-weight: 400;
+                color: #272727;
+                line-height:0.85rem;
+                align-items: center;
+                padding-left: 3.5vh;
+                margin-top: 1vh;
+                cursor: pointer;
+            }
+            .division {
+                width: 1.85rem;
+                height: 0rem;
+                opacity: 1;
+                border: 0.01rem solid #AFB0B4;
+                margin: 0.18rem 0rem 0.18rem 0.35rem;
+            }
+            .back{
+                display: flex;
+                width: 12vh;
+                height: 5vh;
+                font-size: medium;
+                font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+                font-weight: 400;
+                color: #272727;
+                line-height:0.85rem;
+                align-items: center;
+                padding-left: 3.5vh;
+                margin-top: 0.5vh;
+                cursor: pointer;
+            }
+        }
     }
 }
 .select{
     position: absolute;
-    top: 0.93rem;
-    right: 1.04rem;
-    //text-align: center;
+    top: 8vh;//0.93rem
+    right: 2vw;//0.8rem
     vertical-align: center;
     width: 2.54rem;
-    height: 1.7rem;
+    height: auto;
     background: #FFFFFF;
     box-shadow: 0rem 0.03rem 0.06rem 0.01rem rgba(0,0,0,0.1600);
     border-radius: 0.2rem 0.2rem 0.2rem 0.2rem;
+    padding-bottom: 0.36rem;
     .option{       
         font-size: 0.24rem;
         font-family: Microsoft YaHei-Regular, Microsoft YaHei;

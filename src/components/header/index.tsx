@@ -1,8 +1,18 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
+import MyHomePage from "../MyHomePage/MyHomePage";
 import './index.less';
 import muxi from  '/src/images/muxi-logo.png' 
+import { getJson } from "../../interface/fetch";
 
-const Header:React.FC = () => {
+
+const Header = () => {
+
+  const [showHome,setShowHome] = useState(false)
+
+  const [avatar,setAvatar] = useState()
+
+  const [complete,setComplete] = useState(false)
+
   const [dropdown,setDropdown]=useState(false);
 
   function forMore(){
@@ -13,6 +23,17 @@ const Header:React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    getJson('/user/info').then(data => {
+      setAvatar(data.data.avatar);
+    })
+  },[complete])
+  
+
+  const quit = () => {
+    localStorage.removeItem('token')
+  }
+
   return (
   <div>
    <div className='header'>
@@ -21,15 +42,18 @@ const Header:React.FC = () => {
         <div className='text'>木 犀</div>
       </div>
       <div className='avatar' onClick={forMore}>
-          
+          {avatar?<img src={avatar} />:""}
       </div>
    </div>
+
    {dropdown && <div className="select">
-      <div className="option mine">个人主页</div>
+      <div className="option mine" onClick={()=>{setShowHome(true)}}>个人主页</div>
       <div className="division"></div>
-      <div className="option">退出登录</div>
+      <div className="option" onClick={quit}>退出登录</div>
     </div>}
     {!dropdown && <div></div>}
+
+   {showHome?<MyHomePage setShowHome={setShowHome} setAvatar={setAvatar} avatar={avatar} setComplete={setComplete}/>:""}
   </div>
   )
 };
