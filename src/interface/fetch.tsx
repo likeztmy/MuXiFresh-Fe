@@ -2,7 +2,10 @@
 export  async function postData (url = '', data = {},method: 'POST'){
     // Default options are marked with *
     const preurl='http://119.3.2.168:2022/api/v1';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjYsImVtYWlsIjoiYWRjZEBxcS5jb20iLCJyb2xlIjoxLCJleHBpcmVzX2F0IjoxNjYzNDk0NjY2fQ.mblUn1zZxpoCEG2-TJ073zy_b10rikFLt0J4CzuuCpA'
+    const token = localStorage.getItem('token')
+    if(!token){
+      return
+    }
     const response = await fetch(preurl+url, {
       method, 
       headers: {
@@ -20,7 +23,10 @@ export  async function postData (url = '', data = {},method: 'POST'){
   export  async function getJson (url = ''){
     // Default options are marked with *
     const preurl='http://119.3.2.168:2022/api/v1';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjYsImVtYWlsIjoiYWRjZEBxcS5jb20iLCJyb2xlIjoxLCJleHBpcmVzX2F0IjoxNjYzNDk0NjY2fQ.mblUn1zZxpoCEG2-TJ073zy_b10rikFLt0J4CzuuCpA'
+    const token = localStorage.getItem('token')
+    if(!token){
+      return
+    }
     const response = await fetch(preurl+url, {
       method:'GET', 
       headers: {
