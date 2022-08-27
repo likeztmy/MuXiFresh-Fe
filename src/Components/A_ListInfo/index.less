@@ -5,7 +5,6 @@
 
   .info_info {
     font-size: 0.28rem;
-    font-family: Microsoft YaHei-Regular, Microsoft YaHei;
     font-weight: 400;
     color: #272727;
     height: 0.8rem;
@@ -13,12 +12,18 @@
     align-items: center;
     justify-content: center;
 
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     a {
       color: #315CFF;
       text-decoration: none;
     }
 
-    .info_operate:hover {
+    .info_operate:hover, a:hover {
       cursor: pointer
     }
 
