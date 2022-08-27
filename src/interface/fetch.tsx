@@ -2,8 +2,7 @@
 export async function postData(url = '', data = {}, method: 'POST') {
     // Default options are marked with *
     const preurl = 'http://119.3.2.168:2022/api/v1';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJvbGRzZWNvbmQyQHFxLmNvbSIsInJvbGUiOjQsImV4cGlyZXNfYXQiOjE2NjI4NjEzNzN9.mPiLMQuC2XGce0dtk9BzXqmeOzEGM3v0lOrwuJjeAI4'
-    // localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (!token) {
         return
     }
@@ -24,8 +23,7 @@ export async function postData(url = '', data = {}, method: 'POST') {
 export async function getJson(url = '') {
     // Default options are marked with *
     const preurl = 'http://119.3.2.168:2022/api/v1';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJvbGRzZWNvbmQyQHFxLmNvbSIsInJvbGUiOjQsImV4cGlyZXNfYXQiOjE2NjI4NjEzNzN9.mPiLMQuC2XGce0dtk9BzXqmeOzEGM3v0lOrwuJjeAI4'
-    // localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (!token) {
         return
     }
@@ -45,8 +43,7 @@ export async function getJson(url = '') {
 export async function putData(url = '', data = {}, method: 'PUT') {
     // Default options are marked with *
     const preurl = 'http://119.3.2.168:2022/api/v1';
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJvbGRzZWNvbmQyQHFxLmNvbSIsInJvbGUiOjQsImV4cGlyZXNfYXQiOjE2NjI4NjEzNzN9.mPiLMQuC2XGce0dtk9BzXqmeOzEGM3v0lOrwuJjeAI4'
-    // localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (!token) {
         return
     }
