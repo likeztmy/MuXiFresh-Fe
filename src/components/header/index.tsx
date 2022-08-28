@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import MyHomePage from "../MyHomePage/MyHomePage";
+import MyHomePage from "../MyHomePage/MyHomePage";
 import './index.less';
 import muxi from  '/src/images/muxi-logo.png' 
 import { getJson } from "../../interface/fetch";
