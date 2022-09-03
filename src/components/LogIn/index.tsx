@@ -3,8 +3,25 @@ import { useEffect, useState } from 'react'
 import "./index.less"
 import { getJson, postData } from '../../interface/fetch'
 import { useNavigate } from 'react-router-dom'
-const LogIn = (props: any) => {
+import Join from '../../images/join.png'
 
+const LogIn = (props: any) => {
+    const [form,setForm]=useState(0);//报名表状态
+
+   /*  useEffect(()=>{
+        getJson('/schedule')
+        .then(
+            data=>{
+                //0表示未提交 1表示提交
+                setForm(data.data.form_status);
+                console.log(data.data)
+                console.log('##',data.data.form_status)
+            }
+        )
+   .catch(error=>console.log(error))
+    },[]
+    )
+ */
     const {setIsLogIn} = props
 
     const [user,setUser] = useState({
@@ -24,6 +41,7 @@ const LogIn = (props: any) => {
 
     const handleChange2 = (e: { target: { value: any } }) => {
         const password = e.target.value
+        setCheckPassword(true)
         setUser({...user,password})
     }
 
@@ -51,43 +69,67 @@ const LogIn = (props: any) => {
             },
             body: JSON.stringify(usermsg)
         })
-        const json = await res.json()
-        const {data} = json
-        const {token} = data
-        localStorage.setItem('token',token)
-
-        getJson('/user/info')
-        .then(
-            data => {
-                if(data.data.role===1){
-                   const toVisitor = ()=>{
-                    navigate('/visitor')
-                   }
-                   toVisitor()
-                }
-                else if(data.data.role===3||data.data.role===4){
-                    const toManager = ()=>{
-                        navigate('/manager')
-                    }
-                    toManager()
-                }
+        const json = res.json()
+        json.then(
+            data=>{
+                const token = data.data.token
+                localStorage.setItem('token',token)
+            }
+        ).catch(
+            error=>{
+                console.log(error);
+                alert("邮箱或密码错误")
             }
         )
+
+        getJson('/schedule')
+        .then(
+            data=>{
+                //0表示未提交 1表示提交
+                setForm(data.data.form_status);
+                console.log(data.data)
+                console.log('##',data.data.form_status);
+
+                getJson('/user/info')
+                .then(
+                    data => {
+                        if(data.data.role===1){//visitor
+                           const toVisitor = ()=>{
+                            navigate(data.data.form_status==0?'/edit':'/visitor')
+                           }
+                           toVisitor()
+                        }
+                        else if(data.data.role===3||data.data.role===4){
+                            const toManager = ()=>{//manager
+                                navigate(data.data.form_status==0?'/edit':'/manager')
+                            }
+                            toManager()
+                        }
+                    }
+                )
+            }
+        )
+   .catch(error=>console.log(error))
+
+
     }
-    
+
     const back = () => {
         window.location.href = "https://muxi-tech.xyz/"
     }
 
     return(
-        <div>
-            <img className='background' src='https://static.muxixyz.com/index_site/join2.png'/>
+        <div className='login-container'>
+            <div className="pic"><img className='background' src={Join}/></div>
             <div className='login'>
+                <div className='_title'>登录</div>
                 <div className='form' >
-                    <div className='title'>登录</div>
-                    <div className='yourEmail'><label htmlFor="useremail">邮箱:</label><input onBlur={handleChange1} type="email" id='usermail' name='useremail' autoComplete='off'/>{checkEmail?"":<span className='attention'>*格式错误</span>}</div>
-                    <div className='yourPassWord'><label htmlFor='password'>密码:</label><input onBlur={handleChange2} type="password" id='password'/>{checkPassword?"":<span className='attention'>*格式错误</span>}</div>
-                    <div className='end'><button onClick={logIn}>登录</button><button onClick={()=>setIsLogIn(false)}>注册</button><button onClick={back}>返回官网</button></div>
+
+                    <div className='box'>
+                    <div className='yourEmail'><label className='lab' htmlFor="useremail">邮箱:</label><input className='put' onBlur={handleChange1} type="email" id='usermail' name='useremail' autoComplete='off'/>{checkEmail?"":<span className='attention'>*格式错误</span>}</div>
+                    <div className='yourPassWord'><label className='lab' htmlFor='password'>密码:</label><input className='put' onBlur={handleChange2} type="password" id='password'/>{checkPassword?"":<span className='attention'>*格式错误</span>}</div>
+                    <div className='_end'><button onClick={logIn}>登录</button><button onClick={()=>setIsLogIn(false)}>注册</button><button onClick={back}>官网</button></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { getJson, postData } from '../../interface/fetch';
 import cmp from '../../images/complete.png';
 import * as qiniu from 'qiniu-js';
 import A_comment from '../A_comment';
-import { finished } from 'stream';
+//import { finished } from 'stream';
 //提交作业
 
 
@@ -56,7 +56,10 @@ const J_work = () =>{
                                 //获取评论
                                 getJson('/homework/comment?id='+data.data[0].ID+'&limit=5&page=0')
                                 .then (data => {
-                                    setComments(data.data.comments);
+                                    if(data.data!='')
+                                        setComments(data.data.comments);
+                                    else
+                                        setComments([]);
                                     console.log(data.data.comments)
                                 }).catch (error => console.log(error));
                             }
@@ -120,6 +123,7 @@ const J_work = () =>{
         e.preventDefault();
         setFinished(0);
         setComplete(false);
+        setComment(false)
         //拿到option的value，即ID
         const select:HTMLSelectElement=e.currentTarget;
         const index = select.selectedIndex;
@@ -152,7 +156,10 @@ const J_work = () =>{
                                  //更新评论
                                  getJson('/homework/comment?id='+data.data[0].ID+'&limit=5&page=0')
                                  .then (data => {
-                                     setComments(data.data.comments);
+                                    if(data.data!='')
+                                        setComments(data.data.comments);
+                                    else
+                                        setComments([]);
                                      console.log(data.data.comments)
                                  }).catch (error => console.log(error));
                             }).catch (error => console.log(error));
@@ -211,7 +218,7 @@ const J_work = () =>{
    
     return(
         <div className='work'>
-            <div className='title'>作业</div>
+            <div className='title_'>作业</div>
             <div className='divide'>{group}作业</div>
             <div className='one'>
                 <div className='t' >标题：</div>
